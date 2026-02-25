@@ -6,6 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExamAttempt extends Model
 {
+    protected $fillable = [
+        'exam_id',
+        'student_id',
+        'started_at',
+        'expires_at',
+        'submitted_at',
+        'score',
+    ];
+
+    protected $casts = [
+        'started_at' => 'datetime',
+        'expires_at' => 'datetime',
+        'submitted_at' => 'datetime',
+    ];
+
     public function exam()
     {
         return $this->belongsTo(Exam::class);

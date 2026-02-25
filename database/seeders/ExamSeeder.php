@@ -26,12 +26,12 @@ class ExamSeeder extends Seeder
 
         $exam = Exam::firstOrCreate(
             [
-                'title' => 'Math Quiz 1',
+                'title' => 'Basic Web Development Quiz',
                 'subject_id' => $subject->id
             ],
             [
                 'created_by' => $lecturer->id,
-                'description' => 'Basic math quiz',
+                'description' => 'Basic web development quiz',
                 'time_limit_minutes' => 15,
                 'is_published' => true,
             ]

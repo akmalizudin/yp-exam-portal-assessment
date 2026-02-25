@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model
 {
+    protected $fillable = [
+        'exam_attempt_id',
+        'question_id',
+        'selected_option_id',
+        'text_answer',
+        'awarded_marks',
+    ];
+
     public function attempt()
     {
         return $this->belongsTo(ExamAttempt::class, 'exam_attempt_id');

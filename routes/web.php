@@ -21,8 +21,14 @@ Route::middleware('auth')->group(function () {
     // get list of exams for student
     Route::get('/student/exams', [StudentExamController::class, 'index'])->name('student.exams.index');
 
-    // student can start exam attempt
+    // to student start exam attempt
     Route::post('/student/exams/{exam}/start',[ExamAttemptController::class, 'start'])->name('student.exams.start');
+
+    // to redirect user to the exam page
+    Route::get('/student/exams/{exam}', [StudentExamController::class, 'show'])->name('student.exams.show');
+
+    // for student to submit the exam attempt
+    Route::post('/student/exams/{exam}/submit',[StudentExamController::class, 'submit'])->name('student.exams.submit');
 
     // to test rbac, (if role = student, will get 403 when accessing /lecturer-only)
     Route::middleware('role:lecturer')->get('/lecturer-only', function () {

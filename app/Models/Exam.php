@@ -43,4 +43,18 @@ class Exam extends Model
     {
         return $this->hasMany(Question::class);
     }
+
+    // an exam has many attempts by students
+    public function attempts()
+    {
+        return $this->hasMany(ExamAttempt::class);
+    }
+
+    // get the attempt for a specific student (user)
+    public function attemptFor($user)
+    {
+        return $this->attempts()
+            ->where('student_id', $user->id)
+            ->first();
+    }
 }

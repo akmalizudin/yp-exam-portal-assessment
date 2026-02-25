@@ -67,4 +67,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Classroom::class);
     }
+
+    // a user (student) can have many exam attempts (but one exam only once)
+    public function examAttempts()
+    {
+        return $this->hasMany(ExamAttempt::class, 'student_id');
+    }
 }

@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Enums\UserRole;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class User extends Authenticatable
 {
@@ -44,17 +46,25 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'role' => UserRole::class,
         ];
     }
 
     // helper methods to check user role
     public function isLecturer(): bool
     {
-        return $this->role === 'lecturer';
+        return $this->role === UserRole::Lecturer;
     }
 
     public function isStudent(): bool
     {
-        return $this->role === 'student';
+        return $this->role === UserRole::Student;
+    }
+
+    // relationships
+    // classroom relationship (many students belong to one classroom)
+    public function classroom(): BelongsTo
+    {
+        return $this->belongsTo(Classroom::class);
     }
 }

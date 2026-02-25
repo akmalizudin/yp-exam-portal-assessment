@@ -18,7 +18,7 @@ class EnsureRoleIsValid
         $user = $request->user();
 
         // check that user is logged in and has one of the allowed roles
-        abort_unless($user && in_array($user->role, $roles, true), 403);
+        abort_unless($user && in_array($user->role->value, $roles, true), 403);
 
         return $next($request);
     }

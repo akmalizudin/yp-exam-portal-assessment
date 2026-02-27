@@ -59,10 +59,10 @@ A role-based portal for online examination and student management built with Lar
 ## Local Setup (SQLite)
 ```bash
 cp .env.example .env
-php artisan key:generate
-touch database/database.sqlite
 composer install
 npm install
+php artisan key:generate
+touch database/database.sqlite
 php artisan migrate:fresh --seed
 npm run build
 php artisan serve
@@ -112,3 +112,7 @@ php artisan test
 ## Notes
 - Recommended PHP version: **8.4** for clean output.
 - If running on PHP 8.5, you may see upstream vendor deprecation notices in some environments.
+
+## Author
+- Akmal Izudin
+- GitHub: `https://github.com/akmalizudin`

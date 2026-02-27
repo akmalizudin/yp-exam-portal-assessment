@@ -9,7 +9,7 @@
             @csrf
     @endif
     <div>
-        <div class="bg-white shadow rounded" style="margin: 1rem">
+        <div class="shadow rounded" style="margin: 1rem; background-color: #eff6ff;">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 space-y-6">
                 <div class="flex items-start justify-between gap-4">
                     <div>
@@ -111,7 +111,7 @@
 
                 @unless ($isSubmitted)
                     <div>
-                        <button type="submit" class="px-4 py-2 rounded" style="background-color: #d3d3d3ab">
+                        <button type="submit" class="px-4 py-2 rounded" style="background-color: #1d4ed8; color: #ffffff">
                             Submit Exam
                         </button>
                     </div>

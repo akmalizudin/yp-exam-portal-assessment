@@ -23,7 +23,7 @@
                 <input type="text" name="description" value="{{ old('description') }}"
                     placeholder="Description (optional)" class="border rounded w-full">
 
-                <button type="submit" class="px-4 py-2 rounded" style="background-color: #d3d3d3ab; width: 250px">Add
+                <button type="submit" class="px-4 py-2 rounded" style="background-color: #1d4ed8; color: #ffffff; width: 250px">Add
                     Subject</button>
             </div>
 
@@ -33,10 +33,10 @@
         <table class="w-full border">
             <thead>
                 <tr>
-                    <th class="border p-2 text-start" style="background-color: lightgray">Subject</th>
-                    <th class="border p-2 text-start" style="background-color: lightgray">Classroom</th>
-                    <th class="border p-2 text-start" style="background-color: lightgray">Description</th>
-                    <th class="border p-2 text-start" style="background-color: lightgray">Actions</th>
+                    <th class="border p-2 text-start" style="background-color: #dbeafe">Subject</th>
+                    <th class="border p-2 text-start" style="background-color: #dbeafe">Classroom</th>
+                    <th class="border p-2 text-start" style="background-color: #dbeafe">Description</th>
+                    <th class="border p-2 text-start" style="background-color: #dbeafe">Actions</th>
                 </tr>
             </thead>
             <tbody>

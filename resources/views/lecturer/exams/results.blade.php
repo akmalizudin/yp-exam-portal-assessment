@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="bg-white shadow rounded" style="margin: 1rem">
+    <div class="shadow rounded" style="margin: 1rem; background-color: #eff6ff;">
         <div class=" mx-auto bg-white p-6 shadow rounded">
 
             <h2 class="text-xl font-bold mb-3">
@@ -12,13 +12,13 @@
                     <table class="w-full mt-6 border">
                         <thead>
                             <tr>
-                                <th class="border p-2 text-start" style="background-color: lightgray">Student</th>
-                                <th class="border p-2 text-start" style="background-color: lightgray">Email</th>
-                                <th class="border p-2 text-start" style="background-color: lightgray">Score</th>
-                                <th class="border p-2 text-start" style="background-color: lightgray">Status</th>
-                                <th class="border p-2 text-start" style="background-color: lightgray">Submitted At</th>
-                                <th class="border p-2 text-start" style="background-color: lightgray">Time Taken To Complete</th>
-                                <th class="border p-2 text-start" style="background-color: lightgray">Details</th>
+                                <th class="border p-2 text-start" style="background-color: #dbeafe">Student</th>
+                                <th class="border p-2 text-start" style="background-color: #dbeafe">Email</th>
+                                <th class="border p-2 text-start" style="background-color: #dbeafe">Score</th>
+                                <th class="border p-2 text-start" style="background-color: #dbeafe">Status</th>
+                                <th class="border p-2 text-start" style="background-color: #dbeafe">Submitted At</th>
+                                <th class="border p-2 text-start" style="background-color: #dbeafe">Time Taken To Complete</th>
+                                <th class="border p-2 text-start" style="background-color: #dbeafe">Details</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -33,8 +33,8 @@
 
             <div class="flex items-center gap-2">
                 <a href="{{ route('lecturer.subjects.index') }}" class="px-4 py-2 rounded inline-block"
-                    style="background-color: #d3d3d3ab">Cancel</a>
-                <button type="submit" class="px-4 py-2 rounded" style="background-color: #d3d3d3ab">Update Subject</button>
+                    style="background-color: #dbeafe; color: #1e3a8a; border: 1px solid #bfdbfe;">Cancel</a>
+                <button type="submit" class="px-4 py-2 rounded" style="background-color: #1d4ed8; color: #ffffff">Update Subject</button>
             </div>
         </form>
     </div>

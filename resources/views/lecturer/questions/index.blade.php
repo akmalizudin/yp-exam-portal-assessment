@@ -7,7 +7,7 @@
             </h2>
 
             <a href="{{ route('lecturer.questions.create', $exam) }}" class="px-4 py-2 rounded inline-block"
-                style="background-color: #d3d3d3ab">
+                style="background-color: #1d4ed8; color: #ffffff">
                 Add Question
             </a>
         </div>

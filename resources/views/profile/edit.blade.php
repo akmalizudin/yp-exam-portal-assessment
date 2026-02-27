@@ -6,7 +6,7 @@
     </x-slot>
 
     <div>
-        <div class="bg-white shadow rounded" style="margin: 1rem">
+        <div class="shadow rounded" style="margin: 1rem; background-color: #eff6ff;">
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
 
                 <div class="border rounded p-4">

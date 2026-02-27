@@ -1,6 +1,6 @@
 <x-app-layout>
     <div>
-        <div class="bg-white shadow rounded" style="margin: 1rem">
+        <div class="shadow rounded" style="margin: 1rem; background-color: #eff6ff;">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
 
                 <h2 class="text-xl font-semibold mb-4">Available Exams</h2>
@@ -20,14 +20,14 @@
                 <table class="w-full border">
                     <thead>
                         <tr>
-                            <th class="border p-2 text-start" style="background-color: lightgray">Title</th>
-                            <th class="border p-2 text-start" style="background-color: lightgray">Subject</th>
-                            <th class="border p-2 text-start" style="background-color: lightgray">Available Window</th>
-                            <th class="border p-2 text-start" style="background-color: lightgray">Exam Status</th>
-                            <th class="border p-2 text-start" style="background-color: lightgray">Time Limit</th>
-                            <th class="border p-2 text-start" style="background-color: lightgray">Attempt Status</th>
-                            <th class="border p-2 text-start" style="background-color: lightgray">Time Left</th>
-                            <th class="border p-2 text-start" style="background-color: lightgray">Action</th>
+                            <th class="border p-2 text-start" style="background-color: #dbeafe">Title</th>
+                            <th class="border p-2 text-start" style="background-color: #dbeafe">Subject</th>
+                            <th class="border p-2 text-start" style="background-color: #dbeafe">Available Window</th>
+                            <th class="border p-2 text-start" style="background-color: #dbeafe">Exam Status</th>
+                            <th class="border p-2 text-start" style="background-color: #dbeafe">Time Limit</th>
+                            <th class="border p-2 text-start" style="background-color: #dbeafe">Attempt Status</th>
+                            <th class="border p-2 text-start" style="background-color: #dbeafe">Time Left</th>
+                            <th class="border p-2 text-start" style="background-color: #dbeafe">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -67,7 +67,8 @@
                                 </td>
                                 <td class="border p-2">
                                     @if ($attempt && !$attempt->submitted_at && $attempt->expires_at)
-                                        <span class="exam-countdown font-mono" data-expires-at="{{ $attempt->expires_at->timestamp * 1000 }}">
+                                        <span class="exam-countdown font-mono"
+                                            data-expires-at="{{ $attempt->expires_at->timestamp * 1000 }}">
                                             --:--:--
                                         </span>
                                     @else
@@ -79,7 +80,9 @@
                                         @if ($isOpen)
                                             <form method="POST" action="{{ route('student.exams.start', $exam) }}">
                                                 @csrf
-                                                <button type="submit">Start</button>
+                                                <button type="submit"
+                                                    class="rounded text-white"
+                                                    style="background-color: #10b981; padding: 0.1rem 1.2rem;">Start</button>
                                             </form>
                                         @elseif($isUpcoming)
                                             <span class="text-gray-500 text-sm">Not open yet</span>
@@ -102,7 +105,7 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const countdownElements = document.querySelectorAll('.exam-countdown');
 
             if (!countdownElements.length) {

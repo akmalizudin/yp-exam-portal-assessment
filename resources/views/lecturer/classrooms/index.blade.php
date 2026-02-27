@@ -12,18 +12,18 @@
                     class="border rounded w-full" required>
                 <input type="text" name="code" value="{{ old('code') }}" placeholder="Classroom code"
                     class="border rounded w-full" required>
-                <button type="submit" class="px-4 py-2 rounded" style="background-color: #d3d3d3ab; width: 250px;">Add Classroom</button>
+                <button type="submit" class="px-4 py-2 rounded" style="background-color: #1d4ed8; color: #ffffff; width: 250px;">Add Classroom</button>
             </div>
         </form>
 
         <table class="w-full border">
             <thead>
                 <tr>
-                    <th class="border p-2 text-start" style="background-color: lightgray">Name</th>
-                    <th class="border p-2 text-start" style="background-color: lightgray">Code</th>
-                    <th class="border p-2 text-start" style="background-color: lightgray">Students</th>
-                    <th class="border p-2 text-start" style="background-color: lightgray">Subjects</th>
-                    <th class="border p-2 text-start" style="background-color: lightgray">Actions</th>
+                    <th class="border p-2 text-start" style="background-color: #dbeafe">Name</th>
+                    <th class="border p-2 text-start" style="background-color: #dbeafe">Code</th>
+                    <th class="border p-2 text-start" style="background-color: #dbeafe">Students</th>
+                    <th class="border p-2 text-start" style="background-color: #dbeafe">Subjects</th>
+                    <th class="border p-2 text-start" style="background-color: #dbeafe">Actions</th>
                 </tr>
             </thead>
             <tbody>

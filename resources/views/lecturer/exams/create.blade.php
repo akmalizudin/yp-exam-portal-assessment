@@ -53,7 +53,7 @@
                         class="border rounded w-full">
                 </div>
 
-                <button type="submit" class="px-4 py-2 rounded" style="background-color: #d3d3d3ab">
+                <button type="submit" class="px-4 py-2 rounded" style="background-color: #1d4ed8; color: #ffffff">
                     Save Exam
                 </button>
             </form>

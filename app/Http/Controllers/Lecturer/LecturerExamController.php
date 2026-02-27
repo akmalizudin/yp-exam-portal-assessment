@@ -14,6 +14,7 @@ class LecturerExamController extends Controller
     {
         $exams = Exam::where('created_by', $request->user()->id)
             ->with('subject')
+            ->withCount('questions')
             ->get();
 
         return view('lecturer.exams.index', compact('exams'));
@@ -34,6 +35,8 @@ class LecturerExamController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'time_limit_minutes' => 'required|integer|min:1',
+            'starts_at' => 'nullable|date',
+            'ends_at' => 'nullable|date|after:starts_at',
         ]);
 
         Exam::create([
@@ -42,6 +45,8 @@ class LecturerExamController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'time_limit_minutes' => $request->time_limit_minutes,
+            'starts_at' => $request->starts_at ?: null,
+            'ends_at' => $request->ends_at ?: null,
             'is_published' => false,
         ]);
 
@@ -68,6 +73,11 @@ class LecturerExamController extends Controller
     {
         if ($exam->created_by !== $request->user()->id) {
             abort(403);
+        }
+
+        // Only allow publishing if the exam has at least one question.
+        if (!$exam->is_published && !$exam->questions()->exists()) {
+            return back()->with('error', 'Cannot publish exam with no questions.');
         }
 
         $exam->update([

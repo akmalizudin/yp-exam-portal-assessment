@@ -29,6 +29,18 @@ class ExamAttemptController extends Controller
             return redirect()->route('student.exams.show', $exam);
         }
 
+        if ($exam->starts_at && now()->lt($exam->starts_at)) {
+            return redirect()
+                ->route('student.exams.index')
+                ->with('error', 'Exam is not open yet.');
+        }
+
+        if ($exam->ends_at && now()->gt($exam->ends_at)) {
+            return redirect()
+                ->route('student.exams.index')
+                ->with('error', 'Exam availability window has closed.');
+        }
+
         ExamAttempt::create([
             'exam_id' => $exam->id,
             'student_id' => $user->id,

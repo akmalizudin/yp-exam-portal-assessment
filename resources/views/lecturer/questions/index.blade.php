@@ -12,11 +12,11 @@
             </a>
         </div>
 
-        <a href="{{ route('lecturer.exams.index') }}" class="underline">
+        <a href="{{ route('lecturer.exams.index') }}" class="text-sm underline">
             <- Back to My Exams </a>
 
                 <div class="mt-4">
-                    @foreach ($exam->questions as $question)
+                    @forelse ($exam->questions as $question)
                         <div class="border p-4 mb-4">
                             <p><strong>{{ $question->question_text }}</strong>
                                 ({{ $question->type === 'mcq' ? 'Multiple Choice' : 'Short Answer' }})
@@ -49,7 +49,11 @@
                                 </ul>
                             @endif
                         </div>
-                    @endforeach
+                    @empty
+                        <div class="border rounded p-4 text-gray-600">
+                            No questions yet.
+                        </div>
+                    @endforelse
                 </div>
 
     </div>

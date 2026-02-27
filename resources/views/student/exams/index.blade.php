@@ -22,8 +22,10 @@
                         <tr>
                             <th class="border p-2 text-start" style="background-color: lightgray">Title</th>
                             <th class="border p-2 text-start" style="background-color: lightgray">Subject</th>
+                            <th class="border p-2 text-start" style="background-color: lightgray">Available Window</th>
+                            <th class="border p-2 text-start" style="background-color: lightgray">Exam Status</th>
                             <th class="border p-2 text-start" style="background-color: lightgray">Time Limit</th>
-                            <th class="border p-2 text-start" style="background-color: lightgray">Status</th>
+                            <th class="border p-2 text-start" style="background-color: lightgray">Attempt Status</th>
                             <th class="border p-2 text-start" style="background-color: lightgray">Time Left</th>
                             <th class="border p-2 text-start" style="background-color: lightgray">Action</th>
                         </tr>
@@ -31,11 +33,28 @@
                     <tbody>
                         @foreach ($exams as $exam)
                             @php
-                                $attempt = $exam->attemptFor(auth()->user());
+                                $attempt = $exam->attempts->first();
+                                $isUpcoming = $exam->starts_at && now()->lt($exam->starts_at);
+                                $isClosed = $exam->ends_at && now()->gt($exam->ends_at);
+                                $isOpen = !$isUpcoming && !$isClosed;
                             @endphp
                             <tr>
                                 <td class="border p-2">{{ $exam->title }}</td>
                                 <td class="border p-2">{{ $exam->subject->name }}</td>
+                                <td class="border p-2 text-sm">
+                                    {{ $exam->starts_at?->format('Y-m-d H:i') ?? 'Anytime' }}
+                                    -
+                                    {{ $exam->ends_at?->format('Y-m-d H:i') ?? 'No end date' }}
+                                </td>
+                                <td class="border p-2">
+                                    @if ($isUpcoming)
+                                        Upcoming
+                                    @elseif($isClosed)
+                                        Closed
+                                    @else
+                                        Open
+                                    @endif
+                                </td>
                                 <td class="border p-2">{{ $exam->time_limit_minutes }} mins</td>
                                 <td class="border p-2">
                                     @if (!$attempt)
@@ -57,10 +76,16 @@
                                 </td>
                                 <td class="border p-2">
                                     @if (!$attempt)
-                                        <form method="POST" action="{{ route('student.exams.start', $exam) }}">
-                                            @csrf
-                                            <button type="submit">Start</button>
-                                        </form>
+                                        @if ($isOpen)
+                                            <form method="POST" action="{{ route('student.exams.start', $exam) }}">
+                                                @csrf
+                                                <button type="submit">Start</button>
+                                            </form>
+                                        @elseif($isUpcoming)
+                                            <span class="text-gray-500 text-sm">Not open yet</span>
+                                        @else
+                                            <span class="text-red-600 text-sm">Closed</span>
+                                        @endif
                                     @else
                                         <a href="{{ route('student.exams.show', $exam) }}" class="underline">
                                             View

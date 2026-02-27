@@ -4,7 +4,7 @@
 
             <h2 class="text-xl font-bold mb-2">Create Exam</h2>
 
-            <a href="{{ route('lecturer.exams.index') }}" class="underline">
+            <a href="{{ route('lecturer.exams.index') }}" class="text-sm underline">
                 <- Back to My Exams
             </a>
 
@@ -36,6 +36,18 @@
                 <div class="mb-4">
                     <label>Time Limit (minutes) <span class="text-red-600">*</span></label>
                     <input type="number" name="time_limit_minutes" min="1" required placeholder="e.g., 60"
+                        class="border rounded w-full">
+                </div>
+
+                <div class="mb-4">
+                    <label>Available From</label>
+                    <input type="datetime-local" name="starts_at" value="{{ old('starts_at') }}"
+                        class="border rounded w-full">
+                </div>
+
+                <div class="mb-4">
+                    <label>Available Until</label>
+                    <input type="datetime-local" name="ends_at" value="{{ old('ends_at') }}"
                         class="border rounded w-full">
                 </div>
 

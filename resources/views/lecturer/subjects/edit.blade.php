@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="max-w-3xl mx-auto bg-white p-6 shadow rounded mt-6">
+    <div class=" mx-auto bg-white p-6 shadow rounded mt-6" style="margin: 1rem">
         <h2 class="text-xl font-bold mb-4">Edit Subject</h2>
 
         <a href="{{ route('lecturer.subjects.index') }}" class="underline text-sm">Back to Subjects</a>

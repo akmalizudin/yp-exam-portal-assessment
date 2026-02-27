@@ -3,7 +3,7 @@
 
         <h2 class="text-xl font-bold">Edit Question</h2>
 
-        <a href="{{ route('lecturer.questions.index', $question->exam_id) }}" class="underline">
+        <a href="{{ route('lecturer.questions.index', $question->exam_id) }}" class="text-sm underline">
             <- Back to Questions </a>
 
                 <form method="POST" action="{{ route('lecturer.questions.update', $question) }}">

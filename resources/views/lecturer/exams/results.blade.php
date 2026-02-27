@@ -1,12 +1,12 @@
 <x-app-layout>
     <div class="bg-white shadow rounded" style="margin: 1rem">
-        <div class="max-w-6xl mx-auto bg-white p-6 shadow rounded">
+        <div class=" mx-auto bg-white p-6 shadow rounded">
 
             <h2 class="text-xl font-bold mb-3">
                 Results: {{ $exam->title }}
             </h2>
 
-            <a href="{{ route('lecturer.exams.index') }}" class="underline">
+            <a href="{{ route('lecturer.exams.index') }}" class="text-sm underline">
                 <- Back to My Exams </a>
 
                     <table class="w-full mt-6 border">

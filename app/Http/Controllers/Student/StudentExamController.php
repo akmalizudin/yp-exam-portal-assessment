@@ -12,7 +12,10 @@ class StudentExamController extends Controller
     {
         $user = $request->user();
 
-        $exams = Exam::with(['subject', 'attempts'])
+        $exams = Exam::with([
+            'subject',
+            'attempts' => fn($query) => $query->where('student_id', $user->id),
+        ])
             ->where('is_published', true)
             ->whereHas('subject', function ($query) use ($user) {
                 $query->where('classroom_id', $user->classroom_id);

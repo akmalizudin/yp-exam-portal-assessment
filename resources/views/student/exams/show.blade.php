@@ -16,7 +16,7 @@
                         <h2 class="text-2xl font-semibold">{{ $exam->title }}</h2>
                         <p class="text-sm text-gray-600">Subject: {{ $exam->subject->name }}</p>
                     </div>
-                    <a href="{{ route('student.exams.index') }}" class="text-sm underline">Back to Exams</a>
+                    <a href="{{ route('student.exams.index') }}" class="text-sm underline"><- Back to Exams</a>
                 </div>
 
                 @if (session('error'))

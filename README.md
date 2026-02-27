@@ -1,60 +1,77 @@
-# YP Exam Portal Assessment
+# Online Examination & Student Management Portal
 
-A role-based exam portal built with Laravel 11 + Breeze.
+A role-based portal for online examination and student management built with Laravel 11 and Breeze.
 
 ## Tech Stack
 - Laravel 11
 - Laravel Breeze (Blade)
-- SQLite (default setup)
+- SQLite (default local setup)
 - Tailwind CSS
 
-## Roles
-- Lecturer
-- Student
+## Requirement Coverage
 
-## Core Features Implemented
-1. Authentication
-- Secure login/registration using Laravel Breeze.
+### Core Features
+1. Roles (Lecturer, Student)
+- Implemented using `role` enum and role middleware (`role:lecturer`, `role:student`).
 
-2. Role-Based Access Control
-- Lecturer and student roles are enforced in routes using middleware.
+2. Authentication
+- Implemented with Laravel Breeze (register, login, logout, password flow).
 
-3. Exam Creation & Management (Lecturer)
-- Create exams by subject.
-- Add questions (MCQ and open-text).
-- Edit/delete questions.
-- Publish/unpublish exams.
+3. Exam Creation (MCQ + Open Text)
+- Lecturer can create exams.
+- Lecturer can add/edit/delete questions of type `mcq` and `open_text`.
 
-4. Class & Subject Structure
-- Students belong to a classroom.
-- Subjects belong to classrooms.
+4. Class Management
+- Students are assigned to classrooms (`users.classroom_id`).
+- Lecturer classroom management UI is available.
 
-5. Access Control by Class
-- Students only see/start exams whose subject belongs to their classroom.
+5. Subject Management
+- Subjects are linked to classrooms (`subjects.classroom_id`).
+- Lecturer subject management UI is available.
 
-6. Time-Limited Attempts
-- Exam attempts have expiry based on exam time limit.
-- Submission is blocked after expiry.
+6. Access Control by Class
+- Students can only view/start exams for subjects in their own classroom.
 
-7. Results
-- Lecturer can view exam attempts and per-student result details.
+7. Time Limit
+- Exam attempt stores `started_at` and `expires_at`.
+- Submission/access is blocked when attempt expires.
 
-8. Dashboard
-- Role-aware dashboard with quick actions for lecturer/student.
+8. Additional Features
+- Publish/unpublish exam.
+- Publish is disabled when an exam has no questions.
+- Lecturer result list and per-attempt detail view.
+- Role-aware Home dashboard.
+
+### Technical Requirements
+1. Laravel 11 + Breeze
+- Completed (`laravel/framework` v11.x, Breeze installed).
+
+2. Database choice
+- SQLite used by default for quick local setup.
+
+3. Public GitHub repository
+- Add your repository link below before submission:
+- `https://github.com/<your-username>/<your-repo>`
+
+4. README document
+- This document is included.
 
 ## Local Setup (SQLite)
 ```bash
 cp .env.example .env
 php artisan key:generate
 touch database/database.sqlite
-php artisan migrate:fresh --seed
+composer install
 npm install
+php artisan migrate:fresh --seed
 npm run build
 php artisan serve
 ```
 
+Open: `http://127.0.0.1:8000`
+
 ## Seeded Accounts
-Default password for all users: `Password123!`
+Default password for all seeded users: `Password123!`
 
 - Lecturer: `lecturer@test.com`
 - Student: `akmal@test.com`
@@ -62,12 +79,36 @@ Default password for all users: `Password123!`
 - Student: `student3@test.com`
 - Student: `student4@test.com`
 
-## Notes About PHP Version
-This project targets Laravel 11 and works best on PHP 8.4 for clean output.
+## Quick Demo Flow
 
-If you use PHP 8.5, you may see upstream vendor deprecation notices related to PDO MySQL constants in some environments. This does not affect core app functionality.
+### Lecturer flow
+1. Log in as `lecturer@test.com`.
+2. Go to **Home**.
+3. Open **Manage Classrooms** and **Manage Subjects** (optional data setup).
+4. Open **Go to My Exams** and create an exam.
+5. Manage questions (MCQ/open-text).
+6. Publish the exam.
+7. Open **View Results** after student submission.
+8. Review seeded draft scenarios:
+   - `Draft Exam With Questions` (unpublished)
+   - `Draft Exam No Questions` (unpublished, publish disabled until questions are added)
 
-## Run Tests
+### Student flow
+1. Log in as `akmal@test.com`.
+2. Open Exams page.
+3. Start an available exam.
+4. Answer questions and submit before time expires.
+
+## Seeded Exam Data
+- `Basic Web Development Quiz` (published)
+- `Draft Exam With Questions` (unpublished)
+- `Draft Exam No Questions` (unpublished)
+
+## Tests
 ```bash
 php artisan test
 ```
+
+## Notes
+- Recommended PHP version: **8.4** for clean output.
+- If running on PHP 8.5, you may see upstream vendor deprecation notices in some environments.

@@ -5,7 +5,7 @@
             Result for: {{ $attempt->student->name }}
         </h2>
 
-        <a href="{{ route('lecturer.exams.results', $exam) }}" class="underline">
+        <a href="{{ route('lecturer.exams.results', $exam) }}" class="text-sm underline">
             <- Back to Results </a>
 
                 <p class="mb-4 mt-4">

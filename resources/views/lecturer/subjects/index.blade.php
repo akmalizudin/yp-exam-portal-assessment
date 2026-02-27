@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="max-w-6xl mx-auto bg-white p-6 shadow rounded mt-6">
+    <div class=" mx-auto bg-white p-6 shadow rounded mt-6" style="margin: 1rem">
         <div class="mb-4 flex items-center justify-between">
             <h2 class="text-xl font-bold">Subject Management</h2>
             <a href="{{ route('dashboard') }}" class="underline text-sm">Back to Home</a>

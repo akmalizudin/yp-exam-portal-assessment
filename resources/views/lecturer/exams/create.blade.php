@@ -41,13 +41,15 @@
 
                 <div class="mb-4">
                     <label>Available From</label>
-                    <input type="datetime-local" name="starts_at" value="{{ old('starts_at') }}"
+                    <input type="datetime-local" id="starts_at" name="starts_at" value="{{ old('starts_at') }}"
+                        min="{{ now()->format('Y-m-d\\TH:i') }}"
                         class="border rounded w-full">
                 </div>
 
                 <div class="mb-4">
                     <label>Available Until</label>
-                    <input type="datetime-local" name="ends_at" value="{{ old('ends_at') }}"
+                    <input type="datetime-local" id="ends_at" name="ends_at" value="{{ old('ends_at') }}"
+                        min="{{ now()->format('Y-m-d\\TH:i') }}"
                         class="border rounded w-full">
                 </div>
 
@@ -58,4 +60,29 @@
 
         </div>
     </div>
+
+    <script>
+        // to set min date dynamic based on the start date
+        document.addEventListener('DOMContentLoaded', function() {
+            const startsAtInput = document.getElementById('starts_at');
+            const endsAtInput = document.getElementById('ends_at');
+
+            if (!startsAtInput || !endsAtInput) return;
+
+            const syncEndsAtMin = () => {
+                const baseMin = "{{ now()->format('Y-m-d\\TH:i') }}";
+                const selectedStart = startsAtInput.value;
+                const nextMin = selectedStart && selectedStart > baseMin ? selectedStart : baseMin;
+
+                endsAtInput.min = nextMin;
+
+                if (endsAtInput.value && endsAtInput.value < nextMin) {
+                    endsAtInput.value = '';
+                }
+            };
+
+            startsAtInput.addEventListener('change', syncEndsAtMin);
+            syncEndsAtMin();
+        });
+    </script>
 </x-app-layout>

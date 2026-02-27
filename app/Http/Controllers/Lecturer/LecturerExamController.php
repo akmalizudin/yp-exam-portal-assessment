@@ -35,7 +35,7 @@ class LecturerExamController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'time_limit_minutes' => 'required|integer|min:1',
-            'starts_at' => 'nullable|date',
+            'starts_at' => 'nullable|date|after_or_equal:today',
             'ends_at' => 'nullable|date|after:starts_at',
         ]);
 

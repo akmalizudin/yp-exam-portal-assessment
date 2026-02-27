@@ -8,8 +8,8 @@
         <form method="POST" action="{{ route('student.exams.submit', $exam) }}">
             @csrf
     @endif
-    <div class="py-4">
-        <div class="max-w-4xl mx-auto sm:px-6 lg:px-4">
+    <div>
+        <div class="bg-white shadow rounded" style="margin: 1rem">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 space-y-6">
                 <div class="flex items-start justify-between gap-4">
                     <div>
@@ -25,16 +25,16 @@
                     </div>
                 @endif
 
-                <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-sm">
-                    <div class="rounded border p-3">
+                <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 text-sm">
+                    <div class="rounded border p-2">
                         <p class="text-gray-500">Started At</p>
                         <p class="font-medium">{{ optional($attempt->started_at)->format('d M Y, H:i') ?? '-' }}</p>
                     </div>
-                    <div class="rounded border p-3">
+                    <div class="rounded border p-2">
                         <p class="text-gray-500">Expires At</p>
                         <p class="font-medium">{{ optional($attempt->expires_at)->format('d M Y, H:i') ?? '-' }}</p>
                     </div>
-                    <div class="rounded border p-3">
+                    <div class="rounded border p-2">
                         <p class="text-gray-500">Status</p>
                         <p class="font-medium">
                             @if ($attempt->submitted_at)
@@ -44,7 +44,7 @@
                             @endif
                         </p>
                     </div>
-                    <div class="rounded border p-3">
+                    <div class="rounded border p-2">
                         <p class="text-gray-500">Time Remaining</p>
                         <p class="font-medium font-mono">
                             @if (!$attempt->submitted_at && $attempt->expires_at)
@@ -73,17 +73,17 @@
                 @endif
 
                 <div>
-                    <h3 class="font-semibold mb-3">Questions</h3>
+                    <h3 class="font-semibold mb-4">Questions</h3>
 
                     @if ($exam->questions->isEmpty())
                         <p class="text-gray-600">No questions available for this exam yet.</p>
                     @else
-                        <div class="space-y-4">
+                        <div>
                             @foreach ($exam->questions as $index => $question)
                                 @php
                                     $savedAnswer = $attempt->answers->firstWhere('question_id', $question->id);
                                 @endphp
-                                <div class="rounded border p-4">
+                                <div class="rounded border p-4 mb-2">
                                     <p class="font-medium mb-2">Q{{ $index + 1 }}.
                                         {{ $question->question_text }}</p>
 

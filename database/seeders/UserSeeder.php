@@ -25,6 +25,7 @@ class UserSeeder extends Seeder
                 'name' => 'Sir Zakaria',
                 'password' => Hash::make('Password123!'),
                 'role' => UserRole::Lecturer,
+                'classroom_id' => $class?->id,
             ]
         );
 

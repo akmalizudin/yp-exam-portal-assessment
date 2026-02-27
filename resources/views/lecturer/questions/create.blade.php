@@ -3,9 +3,8 @@
 
         <div class="mb-4 flex items-center justify-between">
             <h2 class="text-xl font-bold">Add Question</h2>
-            <a href="{{ route('lecturer.questions.index', $exam) }}" class="px-4 py-2 rounded inline-block"
-                style="background-color: #d3d3d3ab">
-                Back
+            <a href="{{ route('lecturer.questions.index', $exam) }}" class="underline">
+                <- Back to Question
             </a>
         </div>
 

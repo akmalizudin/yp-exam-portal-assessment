@@ -1,16 +1,74 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Home') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
+    <div>
+        <div class="bg-white shadow rounded" style="margin: 1rem">
+            @php
+                $user = auth()->user();
+                $classroomName = $user?->classroom?->name ?? 'Not assigned yet';
+            @endphp
+
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
+                <p class="text-gray-700 mb-6">
+                    Welcome back, <span class="font-semibold">{{ $user->name }}</span>.
+                </p>
+
+                @if ($user->isLecturer())
+                    <div class="grid gap-4 md:grid-cols-2">
+                        <div class="border rounded p-4">
+                            <h3 class="font-semibold text-lg">Exams</h3>
+                            <p class="text-sm text-gray-600 mt-1">Create, manage questions, publish, and review results.</p>
+                            <a href="{{ route('lecturer.exams.index') }}"
+                                class="mt-4 inline-block px-4 py-2 rounded text-sm"
+                                style="background-color: #d3d3d3ab">
+                                Go to My Exams
+                            </a>
+                        </div>
+
+                        <div class="border rounded p-4">
+                            <h3 class="font-semibold text-lg">Class & Subject</h3>
+                            <p class="text-sm text-gray-600 mt-1">Manage classrooms, student grouping, and subjects.</p>
+                            <a href="{{ route('lecturer.classrooms.index') }}"
+                                class="mt-4 mr-2 inline-block px-4 py-2 rounded text-sm"
+                                style="background-color: #d3d3d3ab">
+                                Manage Classrooms
+                            </a>
+                            <a href="{{ route('lecturer.subjects.index') }}"
+                                class="mt-4 inline-block px-4 py-2 rounded text-sm"
+                                style="background-color: #d3d3d3ab">
+                                Manage Subjects
+                            </a>
+                        </div>
+                    </div>
+                @elseif ($user->isStudent())
+                    <div class="grid gap-4 md:grid-cols-2">
+                        <div class="border rounded p-4">
+                            <h3 class="font-semibold text-lg">Exams</h3>
+                            <p class="text-sm text-gray-600 mt-1">View available exams and continue attempts.</p>
+                            <a href="{{ route('student.exams.index') }}"
+                                class="mt-4 inline-block px-4 py-2 rounded text-sm"
+                                style="background-color: #d3d3d3ab">
+                                Go to Exams
+                            </a>
+                        </div>
+
+                        <div class="border rounded p-4">
+                            <h3 class="font-semibold text-lg">Classroom</h3>
+                            <p class="text-sm text-gray-600 mt-1">Your class: {{ $classroomName }}</p>
+                            <a href="{{ route('profile.edit') }}"
+                                class="mt-4 inline-block px-4 py-2 rounded text-sm"
+                                style="background-color: #d3d3d3ab">
+                                View Profile
+                            </a>
+                        </div>
+                    </div>
+                @else
+                    <p class="text-gray-700">Your account role is not configured yet.</p>
+                @endif
             </div>
         </div>
     </div>

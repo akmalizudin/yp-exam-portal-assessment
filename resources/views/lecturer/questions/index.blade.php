@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="bg-white p-6 shadow rounded" style="margin: 1rem">
 
-        <div class="mb-4 flex items-center justify-between">
+        <div class="mb-2 flex items-center justify-between">
             <h2 class="text-xl font-bold">
                 Questions for: {{ $exam->title }}
             </h2>
@@ -12,29 +12,45 @@
             </a>
         </div>
 
-        <div class="mt-6">
-            @foreach ($exam->questions as $question)
-                <div class="border p-4 mb-4">
-                    <p><strong>{{ $question->question_text }}</strong>
-                        ({{ $question->type === 'mcq' ? 'Multiple Choice' : 'Short Answer' }})
-                        ({{ $question->marks }} marks)
-                    </p>
+        <a href="{{ route('lecturer.exams.index') }}" class="underline">
+            <- Back to My Exams </a>
 
-                    @if ($question->type === 'mcq')
-                        <ul class="list-disc ml-2">
-                            @foreach ($question->options as $option)
-                                <li>
-                                    - {{ $option->option_text }}
-                                    @if ($option->is_correct)
-                                        <b>(Correct Answer)</b>
-                                    @endif
-                                </li>
-                            @endforeach
-                        </ul>
-                    @endif
+                <div class="mt-4">
+                    @foreach ($exam->questions as $question)
+                        <div class="border p-4 mb-4">
+                            <p><strong>{{ $question->question_text }}</strong>
+                                ({{ $question->type === 'mcq' ? 'Multiple Choice' : 'Short Answer' }})
+                                ({{ $question->marks }} marks)
+                            </p>
+
+                            <div class="mb-2 inline-flex items-center gap-2 text-sm">
+                                <a href="{{ route('lecturer.questions.edit', $question) }}" class="underline">
+                                    Edit
+                                </a>
+                                <span class="text-gray-400">/</span>
+                                <form method="POST" action="{{ route('lecturer.questions.destroy', $question) }}"
+                                    class="inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="underline">Delete</button>
+                                </form>
+                            </div>
+
+                            @if ($question->type === 'mcq')
+                                <ul class="list-disc ml-2">
+                                    @foreach ($question->options as $option)
+                                        <li>
+                                            - {{ $option->option_text }}
+                                            @if ($option->is_correct)
+                                                <b>(Correct Answer)</b>
+                                            @endif
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </div>
+                    @endforeach
                 </div>
-            @endforeach
-        </div>
 
     </div>
 </x-app-layout>

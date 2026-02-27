@@ -21,6 +21,47 @@ class LecturerQuestionController extends Controller
         return view('lecturer.questions.create', compact('exam'));
     }
 
+    public function edit(Question $question)
+    {
+        $question->load('options');
+
+        return view('lecturer.questions.edit', compact('question'));
+    }
+
+    public function update(Request $request, Question $question)
+    {
+        $question->update([
+            'question_text' => $request->question_text,
+            'marks' => $request->marks,
+        ]);
+
+        if ($question->type === 'mcq') {
+
+            foreach ($request->options as $optionId => $text) {
+
+                $option = $question->options()->find($optionId);
+
+                if ($option) {
+                    $option->update([
+                        'option_text' => $text,
+                        'is_correct' => $optionId == $request->correct_option,
+                    ]);
+                }
+            }
+        }
+
+        return redirect()
+            ->route('lecturer.questions.index', $question->exam_id)
+            ->with('success', 'Question updated successfully.');
+    }
+
+    public function destroy(Question $question)
+    {
+        $question->delete();
+
+        return back()->with('success', 'Deleted.');
+    }
+
     public function store(Request $request, Exam $exam)
     {
         $request->validate([

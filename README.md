@@ -114,5 +114,5 @@ php artisan test
 - If running on PHP 8.5, you may see upstream vendor deprecation notices in some environments.
 
 ## Author
-- Akmal Izudin
+- Akmal Izudin Bin Zakaria
 - GitHub: `https://github.com/akmalizudin`

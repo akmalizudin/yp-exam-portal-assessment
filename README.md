@@ -50,8 +50,7 @@ A role-based portal for online examination and student management built with Lar
 - SQLite used by default for quick local setup.
 
 3. Public GitHub repository
-- Add your repository link below before submission:
-- `https://github.com/<your-username>/<your-repo>`
+- `https://github.com/akmalizudin/yp-exam-portal-assessment`
 
 4. README document
 - This document is included.
